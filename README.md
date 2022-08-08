@@ -3,7 +3,7 @@
 
 ## Using This Environment
 
-This environment is simple to use. Fork ro clone the environment to your host computer
+This environment is simple to use. Fork or clone the environment to your host computer
 into `my_project`, add a `my_project/src/` directory for the docker container
 to store your project in. Edit the Dockerfile to select the version of Elixir
 and Phoenix that you want to use for your project and build the image with the
