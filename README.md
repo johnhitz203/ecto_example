@@ -78,3 +78,6 @@ machine.
 
 Note: In order to work there must be `my_project/src/` directory in the project on the host
 computer, and this directory must be created from the host command line.
+
+Note: This is based on the article **Use Docker to create an Elixir/Phoenix
+development environment** by Cesar William Alvarenga.

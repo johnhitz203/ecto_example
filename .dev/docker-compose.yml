@@ -4,7 +4,7 @@ services:
   phoenix:
     build: .
     volumes:
-      - ./src:/app
+      - ../src:/app
     ports:
       - "4000:4000"
     depends_on:
@@ -17,4 +17,4 @@ services:
       PGDATA: /var/lib/postgresql/data/pgdata
     restart: always
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
+      - ../pgdata:/var/lib/postgresql/data
