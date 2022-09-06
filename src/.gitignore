@@ -1,7 +1,3 @@
-# The directory where Docker will write postgres data to for development
-# This directory will be created the first time that you run the environment.
-pgdata/
-
 # The directory Mix will write compiled artifacts to.
 /_build/
 
@@ -35,3 +31,4 @@ hello-*.tar
 # In case you use Node.js/npm, you want to ignore these.
 npm-debug.log
 /assets/node_modules/
+
