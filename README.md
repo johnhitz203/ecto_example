@@ -26,10 +26,11 @@ the host with the execpetion of starting the server, which uses the
 After pulling down the environment by either forking or cloning it into a
 folder on your local computer there are a few steps you need to take to get it
 ready for use. First, you can remove the `src/` directory which contains a very
-simple example application. I created as an example. Next you need to `source`
-the `.dev/.env` file in order to created an alias so that any mix command you
-run in the development terminal are executed against the Elixir code running
-in the container. (This needs to be done for all terminals you are using for
+simple example application. Next you need to `source` the `.dev/.env` file in
+order to created alias' for running the commands that execute the functionality
+of the environment. After sourcing the `.dev/.env` file any mix mix command you
+run in the development terminal are executed against the Elixir code running in
+the container. (This needs to be done for all terminals you are using for
 development.) After that you need to build the docker image that will create
 your container. 
 
@@ -37,7 +38,7 @@ your container.
 
 `$ source .dev/.env`
 
-`$ docker-compose -f .dev/docker-compose.yml`
+`$ build`
 
 ## Developing An App
 
@@ -56,7 +57,7 @@ and change your ip from `http: [ip: {127, 0, 0, 1}, port: 4000]` to `http: [ip:
 
 `$ mix ecto.create`
 
-`$ docker-compose -f .dev/docker-compose.yml up`
+`$ up`
 
 ## Stoping and Starting The Container
 
@@ -71,10 +72,10 @@ project simply run the following commands.
 
 __Start the Container__
 
-`$ docker-compose -f .dev/docker-compose.yml up`
+`$ up`
 
 __Stop the Container__
 
-`$ docker-compose -f .dev/docker-compose.yml down`
+`$ down`
 
 ## Deployment
