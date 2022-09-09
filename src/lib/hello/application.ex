@@ -8,6 +8,8 @@ defmodule Hello.Application do
   @impl true
   def start(_type, _args) do
     children = [
+      # Start the Ecto repository
+      Hello.Repo,
       # Start the Telemetry supervisor
       HelloWeb.Telemetry,
       # Start the PubSub system

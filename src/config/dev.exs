@@ -1,5 +1,15 @@
 import Config
 
+# Configure your database
+config :hello, Hello.Repo,
+  username: "postgres",
+  password: "postgres",
+  hostname: "db",
+  database: "hello_dev",
+  stacktrace: true,
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10
+
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
@@ -13,7 +23,7 @@ config :hello, HelloWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "d5yzqIsPJQ4Xp8xMYb35pC+FiKPlQ1QPBv6a45v63J7YPl0TqFrcN68neZelyTS8",
+  secret_key_base: "NWMWrLZH42s0F31pxxP8wENTJVObkvDQHY8LCiMjJMYpe3Xwdzo6Qonm3NpyMEKI",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}

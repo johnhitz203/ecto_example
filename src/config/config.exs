@@ -7,12 +7,15 @@
 # General application configuration
 import Config
 
+config :hello,
+  ecto_repos: [Hello.Repo]
+
 # Configures the endpoint
 config :hello, HelloWeb.Endpoint,
   url: [host: "localhost"],
   render_errors: [view: HelloWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Hello.PubSub,
-  live_view: [signing_salt: "XzTuKmOs"]
+  live_view: [signing_salt: "T4t3HmgX"]
 
 # Configures the mailer
 #
