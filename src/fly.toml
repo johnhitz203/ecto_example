@@ -1,6 +1,6 @@
-# fly.toml file generated for aged-forest-8302 on 2022-09-08T19:28:48Z
+# fly.toml file generated for summer-dream-8993 on 2022-10-06T04:30:05Z
 
-app = "aged-forest-8302"
+app = "summer-dream-8993"
 kill_signal = "SIGTERM"
 kill_timeout = 5
 processes = []
@@ -9,7 +9,7 @@ processes = []
   release_command = "/app/bin/migrate"
 
 [env]
-  PHX_HOST = "aged-forest-8302.fly.dev"
+  PHX_HOST = "summer-dream-8993.fly.dev"
   PORT = "8080"
 
 [experimental]

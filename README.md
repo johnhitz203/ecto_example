@@ -54,17 +54,13 @@ working on an app generated on your localhost. You use mix commands in the same
 way you normally would with the execption of starting the server. Additionally,
 you will need to change the owner of the `src/` dirctory from `root:root` to
 `user:user` where user is your username. Finally, you need to make two changes
-in the `src/config/dev.ex`: change the database host name from `localhost` to `db`
-and change your ip from `http: [ip: {127, 0, 0, 1}, port: 4000]` to `http: [ip:
-{0, 0, 0, 0}, port: 4000]`. Lets do that now.
+in the `src/config/dev.ex`: change the database host name from `localhost` to `db` and change your ip from `http: [ip: {127, 0, 0, 1}, port: 4000]` to `http: [ip: {0, 0, 0, 0}, port: 4000]`. Lets do that now.
 
 `$ mix phx.new . --app <application_name> [ options ]`
 
 `$ sudo chown -R user:user src/`
 
 `$ mix ecto.create`
-
-`$ up`
 
 ## Stoping and Starting The Container
 
@@ -85,6 +81,18 @@ __Stop the Container__
 
 `$ down`
 
+## Run the Phoenix Server
+
+As is normally the case, you can run the Phoenix server in either the normal mode or in an interactive terminal. First you need to bring the container up as described above. Once that is done open a second terminal and source `.dev/.env` again. Now start the interactive terminal with the `it` alias which will change the command prompt to look something like `root@7b4690bb39fd:/app#`. Finally you need start the server with eiter `mix phx.server` or `iex -S mix phx.server` Here are the commands in the order that they should be run in.
+
+`$ up`
+
+`$ it` run in second terminal after `$ . .dev/.env`
+
+`root@7b4690bb39fd:/app# mix phx.server` pr
+
+`root@7b4690bb39fd:/app# iex -S mix.iex`
+
 ## Deployment
 
 __Deploy to fly.io__
@@ -92,31 +100,11 @@ __Deploy to fly.io__
 The container that creates this environment includes the fly.io CLI. The
 deployment process for fly.io is about as simple as it gets and there docs are
 quite thorough so I will not receate them here. That said, you do need to run
-the fly CLI command in an interactive terminal inside the container
-
-This means you have to have the container id which you will use to open a
-terminal. That can be obtained by running 
-
-`$dps`
-
-which should return something that looks like this.
-
-```
-CONTAINER ID   IMAGE          COMMAND                  CREATED             STATUS             PORTS                                       NAMES
-ad578a95b7db   dev_phoenix    "mix phx.server"         About an hour ago   Up About an hour   0.0.0.0:4000->4000/tcp, :::4000->4000/tcp   dev_phoenix_1
-7f1986c05eab   postgres:9.6   "docker-entrypoint.s…"   About an hour ago   Up About an hour   5432/tcp                                    dev_db_1
-```
-We are looking for the `CONTAINER ID` that coresponds with the `dev_phoenix`
-image. Using that information open an interactive terminal in the container with
-
-`$ it ad578a95b7db`
-
-This will change your command prompt to something similar to `root@ad578a95b7db:/app#`. Fly.io uses
-`fly launch` to initialially build and deploy the app and `fly deploy` to push
-updates to the running application. But, before you can use those commands you
-have to login by typing the following command.
+the fly CLI command in an interactive terminal inside the container. Again, this is done with `$ it`. Once you're in the container terminal you will use the fly CLI commands. Fly.io uses `fly launch` to initialially build and deploy the app and `fly deploy` to push updates to the running application. But, before you can use those commands you have to login using the `fly auth login` command. Here are the commands to login, launch and push updates to your project on fly.
 
 `root@ad578a95b7db:/app# fly auth login`
+
+`root@ad578a95b7db:/app# fly launch`
 
 You will be presented with a message similar to 
 
@@ -127,7 +115,12 @@ Opening https://fly.io/app/auth/cli/4490b6fe0c93e612af90738423bc7985 ...
 Waiting for session...
 ```
 
-Once you get the interactive terminal prompt `root@ad578a95b7db:/app#` back you
-are ready to go.
+Copy the link into your host browser address bar. Once you get the interactive terminal prompt `root@ad578a95b7db:/app#` back your project has been deployed. Typing the comand open will again return an error like this. Again copy the link to your host browser and you will be taken to your production application.
 
-`$
+```
+Error failed opening http://summer-dream-8993.fly.dev: exec: "xdg-open": executable file not found in $PATH
+```
+
+Finally use the `fly deploy` command in the interactive terminal to push updates.
+
+`root@ad578a95b7db:/app# fly launch`
