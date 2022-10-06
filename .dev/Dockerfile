@@ -20,4 +20,4 @@ RUN mix local.hex --force && \
     mix archive.install hex phx_new 1.6.11 --force && \
     mix local.rebar --force
 
-CMD ["mix", "phx.server"]
+ENTRYPOINT ["tail", "-f", "/dev/null"]
